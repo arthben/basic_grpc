@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net"
+	"os"
 
 	"github.com/arthben/basic_grpc/grpc_server/api/handlers"
 	"github.com/arthben/basic_grpc/grpc_server/internal/logging"
@@ -12,10 +13,17 @@ import (
 )
 
 func main() {
+	// get listener port
+	port := os.Getenv("BASIC_GRPC_PORT")
+	if len(port) == 0 {
+		fmt.Println("Env BASIC_GRPC_PORT not found")
+		os.Exit(1)
+	}
+
 	// init logger
 	logging.NewLogger()
 
-	listener, err := net.Listen("tcp", ":8099")
+	listener, err := net.Listen("tcp", fmt.Sprintf(":%s", port))
 	log.Info().Msg("Start grpc-server on " + listener.Addr().String())
 	fmt.Printf("GRPC Server Listen on %s\n", listener.Addr().String())
 
