@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package contract;
+option go_package = "github.com/arthben/basic_grpc/protobuf/contract";
+
+import "google/protobuf/empty.proto";
+
+service ThingsTodo {
+    rpc TaskList(google.protobuf.Empty) returns (TodoItems) {};
+    rpc AddTask(AddTodoReq) returns (TodoItem) {};
+}
+
+message TodoItem {
+    string id = 1;
+    string todo = 2;
+    string details = 3;
+    string created_date = 4;
+}
+
+message TodoItems {
+    repeated TodoItem todolist = 1;
+}
+
+message AddTodoReq {
+    string todo = 1;
+    string details = 2;
+}
+
+
