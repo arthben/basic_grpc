@@ -4,7 +4,7 @@
 // - protoc             v5.27.1
 // source: todo.proto
 
-package __contract
+package contract
 
 import (
 	context "context"

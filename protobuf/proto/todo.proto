@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package contract;
-option go_package = "github.com/arthben/basic_grpc/protobuf/contract";
+option go_package = "protobuf/contract";
 
 import "google/protobuf/empty.proto";
 
